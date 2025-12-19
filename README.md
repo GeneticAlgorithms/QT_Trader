@@ -1,5 +1,9 @@
 # Adaptive Wave Trading Model
 
+**Student Project**  
+Alexander Le & Julian Yang  
+University of California, Berkeley - Department of Mathematics
+
 A physics-based trading model implementing the adaptive-wave alternative to the Black-Scholes option pricing model, based on nonlinear Schrödinger (NLS) equations and fluid dynamics principles.
 
 **Reference:** [Adaptive–Wave Alternative for the Black–Scholes Option Pricing Model](https://arxiv.org/pdf/0911.1834) (arXiv:0911.1834v1 [q-fin.PR])
