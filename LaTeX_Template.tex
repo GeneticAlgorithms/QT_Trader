@@ -1,0 +1,173 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\title{Adaptive Wave Model for Option Pricing:\\
+A Comparison with the Black-Scholes Model}
+\author{Student 1 Name \and Student 2 Name\\
+\small University Name\\
+\small Department Name}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This paper implements and compares the adaptive nonlinear Schrödinger (NLS) wave model for option pricing with the standard Black-Scholes model. We focus on the shock-wave and soliton solutions of the NLS equation, which provide a quantum-mechanical perspective on option pricing. Through numerical implementation and comparison, we demonstrate the relationship between the wave function approach and traditional option pricing methods. Our results show [KEY FINDINGS]. The model offers an alternative framework for understanding option pricing dynamics, though proper parameter calibration remains a challenge.
+
+\textbf{Keywords:} Option pricing, Nonlinear Schrödinger equation, Black-Scholes model, Wave functions, Financial modeling
+\end{abstract}
+
+\section{Introduction}
+
+The Black-Scholes model \cite{black1973pricing} revolutionized option pricing by providing a closed-form solution for European options. However, the model has well-known limitations, including the assumption of constant volatility and the inability to capture market phenomena such as volatility smiles and skews. 
+
+In this paper, we explore an alternative approach based on the adaptive nonlinear Schrödinger (NLS) equation, as proposed by Ivancevic \cite{ivancevic2009adaptive}. This wave-based model treats option prices as probability amplitudes, where the absolute square of the wave function represents the probability density function.
+
+\subsection{Motivation}
+
+The motivation for this work stems from:
+\begin{itemize}
+    \item Limitations of the Black-Scholes model in capturing market dynamics
+    \item The potential of wave-based approaches to model financial markets
+    \item The connection between quantum mechanics and probability in finance
+\end{itemize}
+
+\subsection{Paper Structure}
+
+This paper is organized as follows: Section 2 reviews the Black-Scholes model. Section 3 introduces the NLS wave model. Section 4 describes our implementation. Section 5 presents results and comparison. Section 6 discusses findings and limitations. Section 7 concludes.
+
+\section{Theoretical Background}
+
+\subsection{Black-Scholes Model}
+
+The Black-Scholes partial differential equation for option pricing is:
+\begin{equation}
+\frac{\partial u}{\partial t} = -\frac{1}{2}(\sigma s)^2 \frac{\partial^2 u}{\partial s^2} - rs \frac{\partial u}{\partial s} + ru
+\end{equation}
+where $u = u(t,s)$ is the option price, $\sigma$ is volatility, $r$ is the risk-free rate, and $s$ is the stock price.
+
+For European call and put options, the closed-form solutions are:
+\begin{align}
+u_{\text{Call}}(s,t) &= s \mathcal{N}(d_1) e^{-T\delta} - k \mathcal{N}(d_2) e^{-rT} \\
+u_{\text{Put}}(s,t) &= k \mathcal{N}(-d_2) e^{-rT} - s \mathcal{N}(-d_1) e^{-T\delta}
+\end{align}
+where $\mathcal{N}$ is the cumulative normal distribution, and $d_1$, $d_2$ are defined as in the standard Black-Scholes formula.
+
+\subsection{Nonlinear Schrödinger Equation Model}
+
+The adaptive NLS equation for option pricing is:
+\begin{equation}
+i\frac{\partial \psi}{\partial t} = -\frac{1}{2}\sigma \frac{\partial^2 \psi}{\partial s^2} - \beta |\psi|^2 \psi
+\end{equation}
+where $\psi(s,t)$ is the complex-valued wave function, and $|\psi(s,t)|^2$ represents the probability density function for the option price.
+
+\subsubsection{Shock-Wave Solution}
+
+The shock-wave (dark soliton) solution is:
+\begin{equation}
+\psi_2(s,t) = \pm \sqrt{\frac{-\sigma}{\beta}} \tanh(s - \sigma k t) \exp\left(i\left[ks - \frac{1}{2}\sigma t(2+k^2)\right]\right)
+\end{equation}
+
+\subsubsection{Soliton Solution}
+
+The bright soliton solution is:
+\begin{equation}
+\psi_4(s,t) = \pm \sqrt{\frac{\sigma}{\beta}} \text{sech}(s - \sigma k t) \exp\left(i\left[ks - \frac{1}{2}\sigma t(k^2-1)\right]\right)
+\end{equation}
+
+\section{Implementation}
+
+\subsection{Numerical Methods}
+
+We implemented both models in Python using NumPy and SciPy. The Black-Scholes formulas were implemented directly from equations (2) and (3). The NLS solutions were computed using the analytical forms given in equations (5) and (6).
+
+\subsection{Parameter Calibration}
+
+For simplicity, we set $\beta = r$ (the interest rate) in most of our analysis. Full calibration would require optimization algorithms such as Levenberg-Marquardt, which is beyond the scope of this work.
+
+\subsection{Comparison Methodology}
+
+To compare the models, we:
+\begin{enumerate}
+    \item Calculate option prices using both models
+    \item Compute error metrics (MSE, MAE)
+    \item Visualize differences
+    \item Analyze Greeks
+\end{enumerate}
+
+\section{Results}
+
+\subsection{Option Price Comparison}
+
+[Add your results here with figures]
+
+Figure 1 shows the comparison between Black-Scholes and NLS model predictions for European call options. The NLS shock-wave solution shows qualitative agreement, though proper scaling is needed for quantitative comparison.
+
+\subsection{Greeks Analysis}
+
+[Add Greeks comparison]
+
+\subsection{Parameter Sensitivity}
+
+[Add parameter sensitivity results]
+
+\section{Discussion}
+
+\subsection{Key Findings}
+
+\begin{itemize}
+    \item The NLS model provides a novel perspective on option pricing
+    \item The shock-wave solution shows promise for approximating Black-Scholes
+    \item Parameter calibration is crucial for quantitative agreement
+\end{itemize}
+
+\subsection{Limitations}
+
+\begin{itemize}
+    \item Simplified parameter calibration ($\beta = r$)
+    \item Need for proper normalization/scaling
+    \item Computational complexity for full calibration
+\end{itemize}
+
+\subsection{Future Work}
+
+\begin{itemize}
+    \item Implement full parameter optimization
+    \item Explore combined solutions
+    \item Extend to stochastic volatility
+    \item Validate with real market data
+\end{itemize}
+
+\section{Conclusion}
+
+This paper has implemented and compared the adaptive NLS wave model with the Black-Scholes model. While the wave-based approach offers an interesting alternative framework, further work is needed on parameter calibration and validation with real market data. The model demonstrates the potential of applying quantum-mechanical concepts to financial modeling.
+
+\section*{Acknowledgments}
+
+We thank [advisor/instructor name] for guidance and the authors of the original paper for their theoretical contributions.
+
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+
+\bibitem{black1973pricing}
+Black, F., \& Scholes, M. (1973). The Pricing of Options and Corporate Liabilities. \textit{Journal of Political Economy}, 81(3), 637-659.
+
+\bibitem{ivancevic2009adaptive}
+Ivancevic, V. G. (2009). Adaptive–Wave Alternative for the Black–Scholes Option Pricing Model. arXiv:0911.1834v1 [q-fin.PR].
+
+\bibitem{merton1973theory}
+Merton, R. C. (1973). Theory of Rational Option Pricing. \textit{Bell Journal of Economics and Management Science}, 4, 141-183.
+
+% Add more references as needed
+
+\end{thebibliography}
+
+\end{document}
+

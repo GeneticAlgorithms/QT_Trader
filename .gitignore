@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# LaTeX build files
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.pdf
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific - exclude full implementation files
+# (keeping only student project files)
+nls_model.py
+manakov_system.py
+trading_engine.py
+visualization.py
+simulate.py
+example.py
+01_Simulation_Suite.ipynb
+02_Simple_Example.ipynb
+03_Exploration.ipynb
+NOTEBOOKS_README.md
+PROJECT_SUMMARY.md
+
